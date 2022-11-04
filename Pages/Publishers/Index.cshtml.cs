@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Danciuc_Natalia_Lab2.Data;
 using Danciuc_Natalia_Lab2.Models;
+using Danciuc_Natalia_Lab2.Models.ViewModels;
 
 namespace Danciuc_Natalia_Lab2.Pages.Publishers
 {
@@ -18,15 +19,34 @@ namespace Danciuc_Natalia_Lab2.Pages.Publishers
         {
             _context = context;
         }
-
-        public IList<Publisher> Publisher { get;set; } = default!;
-
-        public async Task OnGetAsync()
+        public IList<Publisher> Publisher { get; set; } = default!;
+        public PublisherIndexData PublisherData { get; set; }
+        public int PublisherID { get; set; }
+        public int BookID { get; set; }
+        public async Task OnGetAsync(int? id, int? bookID)
         {
-            if (_context.Publisher != null)
+            PublisherData = new PublisherIndexData();
+            PublisherData.Publishers = await _context.Publisher
+            .Include(i => i.Books)
+            .ThenInclude(i => i.Author)
+            .OrderBy(i => i.PublisherName)
+            .ToListAsync();
+            if (id != null)
             {
-                Publisher = await _context.Publisher.ToListAsync();
+                PublisherID = id.Value;
+                Publisher publisher = PublisherData.Publishers
+                .Where(i => i.ID == id.Value).Single();
+                PublisherData.Books = publisher.Books;
             }
+
+
+            /*public async Task OnGetAsync()
+            {
+                if (_context.Publisher != null)
+                {
+                    Publisher = await _context.Publisher.ToListAsync();
+                }
+            }*/
         }
     }
 }

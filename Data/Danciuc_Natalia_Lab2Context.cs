@@ -19,5 +19,7 @@ namespace Danciuc_Natalia_Lab2.Data
         public DbSet<Danciuc_Natalia_Lab2.Models.Publisher> Publisher { get; set; }
 
         public DbSet<Danciuc_Natalia_Lab2.Models.Category> Category { get; set; }
+
+        public DbSet<Danciuc_Natalia_Lab2.Models.Author> Author { get; set; }
     }
 }
