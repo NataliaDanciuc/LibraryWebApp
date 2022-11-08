@@ -99,6 +99,7 @@ namespace Danciuc_Natalia_Lab2.Migrations
                     b.ToTable("BookCategory");
                 });
 
+
             modelBuilder.Entity("Danciuc_Natalia_Lab2.Models.Category", b =>
                 {
                     b.Property<int>("ID")
