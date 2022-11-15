@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Danciuc_Natalia_Lab2.Data;
 using Danciuc_Natalia_Lab2.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Danciuc_Natalia_Lab2.Pages.Books
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : BookCategoriesPageModel
     {
         private readonly Danciuc_Natalia_Lab2.Data.Danciuc_Natalia_Lab2Context _context;
