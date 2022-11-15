@@ -209,5 +209,5 @@ namespace Danciuc_Natalia_Lab2.Areas.Identity.Pages.Account
                   }
                   return (IUserEmailStore<IdentityUser>)_userStore;
               } 
-            }
-        }
+     }
+ }
